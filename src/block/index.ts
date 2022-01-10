@@ -1,10 +1,10 @@
 import SHA256 from 'crypto-js/sha256';
 
 class Block {
-  private timestamp: string;
-  private lastHash: string;
-  private hash: string;
-  private data: string | Array<any>;
+  public timestamp: string;
+  public lastHash: string;
+  public hash: string;
+  public data: string | Array<any>;
 
   constructor(timestamp: string, lastHash: string, hash: string, data: string | Array<any>){
     this.timestamp = timestamp;
