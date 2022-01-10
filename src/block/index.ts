@@ -23,7 +23,7 @@ class Block {
   }
 
   static genesis(){
-    return new this(Date.now().toString(), '----------', '0000000000000000000000000000000000000000000000000000000000000000', [])
+    return new this('Genesis time', '----------', '0000000000000000000000000000000000000000000000000000000000000000', [])
   }
 
   static mineBlock(lastBlock: any, data: string | Array<any>){
