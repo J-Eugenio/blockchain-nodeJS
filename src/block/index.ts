@@ -1,3 +1,5 @@
+import SHA256 from 'crypto-js/sha256';
+
 class Block {
   private timestamp: string;
   private lastHash: string;
@@ -28,9 +30,13 @@ class Block {
 
     const timestamp = Date.now();
     const lastHash = lastBlock.hash;
-    const hash = 'a-fazer-hash';
+    const hash = Block.hash(String(timestamp), lastHash, data)
 
     return new this(String(timestamp), lastHash, hash, data)
+  }
+
+  static hash(timestamp: string, lastHash: string, data: any){
+    return SHA256(`${timestamp}${lastHash}${data}`).toString()
   }
 }
 
