@@ -7,7 +7,6 @@ const app = express();
 const bc = new Blockchain();
 
 app.get('/blocks', (request:Request, response: Response) => {
-  bc.addBlock('200U$')
   return response.json(bc.chain);
 })
 
