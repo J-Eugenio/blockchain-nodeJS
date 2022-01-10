@@ -23,6 +23,15 @@ class Block {
   static genesis(){
     return new this('Genesis time', '----------', '00000000000000000000', [])
   }
+
+  static mineBlock(lastBlock: any, data: string | Array<any>){
+
+    const timestamp = Date.now();
+    const lastHash = lastBlock.hash;
+    const hash = 'a-fazer-hash';
+
+    return new this(String(timestamp), lastHash, hash, data)
+  }
 }
 
 export { Block }
