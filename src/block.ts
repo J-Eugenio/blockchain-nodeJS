@@ -1,10 +1,10 @@
 class Block {
-  private timestamp: Date;
+  private timestamp: string;
   private lastHash: string;
   private hash: string;
-  private data: string;
+  private data: string | Array<any>;
 
-  constructor(timestamp: Date, lastHash: string, hash: string, data: string){
+  constructor(timestamp: string, lastHash: string, hash: string, data: string | Array<any>){
     this.timestamp = timestamp;
     this.lastHash = lastHash;
     this.hash = hash;
@@ -14,9 +14,15 @@ class Block {
   toString(){
     return `Block =
             timestamp = ${this.timestamp}
-            lastHash = ${this.lastHash}
-            hash = ${this.hash}
+            lastHash = ${this.lastHash.substring(0, 10)}
+            hash = ${this.hash.substring(0, 10)}
             data = ${this.data}
             `;
   }
+
+  static genesis(){
+    return new this('Genesis time', '----------', '00000000000000000000', [])
+  }
 }
+
+export { Block }
