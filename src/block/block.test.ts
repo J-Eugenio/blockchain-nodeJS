@@ -1,4 +1,6 @@
 import { Block } from '.'
+//import { DIFFICULTY } from '../utils/config';
+
 describe('Block', () => {
 
   let data: string | Array<any>, lastBlock: Block, block: Block;
@@ -15,5 +17,17 @@ describe('Block', () => {
 
   it('sets the `lastHash` to match the hash of the last Block', () => {
     expect(block.lastHash).toEqual(lastBlock.hash)
+  });
+
+  it('generates a hash that matches the difficulty', () => {
+    expect(block.hash.substring(0, block.difficulty)).toEqual('0'.repeat(block.difficulty))
+  });
+
+  it('lowers the difficulty for slowly mined blocks', () => {
+    expect(Block.adjustDifficulty(block, Number(block.timestamp) + 360000)).toEqual(block.difficulty - 1);
+  });
+
+  it('raises the difficulty for quickly mined blocks', () => {
+    expect(Block.adjustDifficulty(block, Number(block.timestamp) + 1)).toEqual(block.difficulty + 1)
   });
 })

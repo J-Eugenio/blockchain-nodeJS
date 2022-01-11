@@ -3,10 +3,12 @@ import { Block } from '../block';
 class Blockchain {
   public chain:Array<Block>;
 
+  //Inicia a chain com o bloco genesis
   constructor(){
     this.chain = [Block.genesis()];
   }
 
+  //Adiciona um novo bloco
   addBlock(data: any){
     const lastBlock = this.chain.slice(-1)[0];
     const block = Block.mineBlock(lastBlock, data);
@@ -15,6 +17,8 @@ class Blockchain {
     return block;
   }
 
+  //Verifica se a chain e valida
+  //(Se o primeiro bloco e o genesis, se o lastHash correspondem ao bloco anterior, se o hash do bloco atual e valido)
   isValidChain(chain: Array<Block>): Boolean{
     
     if(JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())){
@@ -33,6 +37,7 @@ class Blockchain {
     return true;
   }
 
+  //Atualiza as ramificacoes da chain com o maior bloco
   replaceChain(newChain: Array<Block>) {
 
     if(newChain.length <= this.chain.length){
